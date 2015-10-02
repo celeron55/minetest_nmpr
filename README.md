@@ -30,3 +30,21 @@ $ cd bin  # "bin" is required to be the working directory so that data is locate
 $ ./test
 ```
 
+## License
+
+### Everything not listed separately
+
+Creative Commons Public Domain Dedication (CC0 1.0 Universal (CC0 1.0)).
+
+### /data/tf.jpg
+
+Owned by someone called Carlos Ramirez and used originally in the NMPR with
+permission whatsoever. Maybe having it here falls under fair use or something,
+because it is what the NMPR contained and this repository attempts to be
+historically accurate.
+
+### /data/fontlucida.png
+
+This is from Irrlicht's examples so maybe it falls under the zlib license or
+something.
+
