@@ -4,7 +4,9 @@
 #include "connection.h"
 #include "environment.h"
 #include "common_irrlicht.h"
-#include "jmutex.h"
+#include <jthread/jmutex.h>
+namespace jthread {} // JThread 1.2 support
+using namespace jthread; // JThread 1.3 support
 
 class Client;
 

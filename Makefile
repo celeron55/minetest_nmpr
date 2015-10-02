@@ -6,10 +6,10 @@ SOURCE_FILES = connection.cpp environment.cpp client.cpp server.cpp socket.cpp m
 SOURCES = $(addprefix src/, $(SOURCE_FILES))
 OBJECTS = $(SOURCES:.cpp=.o)
 
-IRRLICHTPATH = ../irrlicht/irrlicht-1.7.1
-JTHREADPATH = ../jthread/jthread-1.2.1
+IRRLICHTPATH = /usr/include/irrlicht
+JTHREADPATH = jthread
 
-CPPFLAGS = -I$(IRRLICHTPATH)/include -I/usr/X11R6/include -I$(JTHREADPATH)/src
+CPPFLAGS = -I/usr/X11R6/include -I/usr/include/irrlicht -I/usr/local/include/irrlicht
 
 #CXXFLAGS = -O3 -ffast-math -Wall
 #CXXFLAGS = -O3 --fast-math -Wall -g
@@ -26,20 +26,16 @@ endif
 
 # Target specific settings
 
-all_linux: LDFLAGS = -L/usr/X11R6/lib$(LIBSELECT) -L$(IRRLICHTPATH)/lib/Linux -L$(JTHREADPATH)/src/.libs -lIrrlicht -lGL -lXxf86vm -lXext -lX11 -ljthread
+all_linux: LDFLAGS = -L/usr/X11R6/lib$(LIBSELECT) -lIrrlicht -lGL -lXxf86vm -lXext -lX11 -ljthread
 all_linux clean_linux: SYSTEM=Linux
-
-all_win32: LDFLAGS = -L$(IRRLICHTPATH)/lib/Win32-gcc -L$(JTHREADPATH)/Debug -lIrrlicht -lopengl32 -lm -ljthread
-all_win32 clean_win32: SYSTEM=Win32-gcc
-all_win32 clean_win32: SUF=.exe
 
 # Name of the binary - only valid for targets which set SYSTEM
 
-DESTPATH = bin/$(TARGET)$(SUF)
+DESTPATH = bin/$(TARGET)
 
 # Build commands
 
-all_linux all_win32: $(DESTPATH)
+all_linux: $(DESTPATH)
 
 $(DESTPATH): $(OBJECTS)
 	$(CXX) -o $@ $(OBJECTS) $(LDFLAGS)
@@ -47,9 +43,9 @@ $(DESTPATH): $(OBJECTS)
 .cpp.o:
 	$(CXX) -c -o $@ $< $(CPPFLAGS) $(CXXFLAGS)
 
-clean: clean_linux clean_win32
+clean: clean_linux
 
-clean_linux clean_win32:
+clean_linux:
 	@$(RM) $(OBJECTS) $(DESTPATH)
 
-.PHONY: all all_win32 clean clean_linux clean_win32
+.PHONY: all all_clean clean_linux

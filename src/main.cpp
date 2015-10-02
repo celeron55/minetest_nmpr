@@ -55,7 +55,7 @@ Actions:
 #define FIELD_OF_VIEW_TEST 0
 
 // Enable unit tests
-#define ENABLE_TESTS 1
+#define ENABLE_TESTS 0
 
 #ifdef _MSC_VER
 #pragma comment(lib, "Irrlicht.lib")
@@ -75,7 +75,9 @@ Actions:
 
 #include <iostream>
 #include <time.h>
-#include <jmutexautolock.h>
+#include <jthread/jmutexautolock.h>
+namespace jthread {} // JThread 1.2 support
+using namespace jthread; // JThread 1.3 support
 #include "common_irrlicht.h"
 #include "map.h"
 #include "player.h"

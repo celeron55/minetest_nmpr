@@ -5,8 +5,10 @@
 #ifndef MAP_HEADER
 #define MAP_HEADER
 
-#include <jmutex.h>
-#include <jthread.h>
+#include <jthread/jmutex.h>
+#include <jthread/jthread.h>
+namespace jthread {} // JThread 1.2 support
+using namespace jthread; // JThread 1.3 support
 #include <iostream>
 #include <malloc.h>
 
